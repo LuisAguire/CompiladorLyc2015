@@ -39,7 +39,7 @@ OPERADOR_COMPARADOR			"<"|">"|"<="|">="|"=="|"!="
 ASIGNACION					":="
 COMENTARIO					"-/".*"-/"
 CARRI_LINE					\n
-ESPACIO						" "
+ESPACIO						" "|\t
 UNRECOGNIZED				.
 %%
 {CONSTANTE_ENTERA}			{cout<<"Detecta constante entera: "<<yytext<<endl;}
