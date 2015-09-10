@@ -1,49 +1,11 @@
--/ esto es un comentario -/
--/ sintaxis que debe dar ok -/
-Integer         variableInt;
-String variableChar;
-123456
-2334.123
-.123
-"Constante string valida"
-""
-[String,Integer,Float]:[miCarString,MiVarInteger,MivarFloat,OtraQUeseDescarta];
-[String,Integer]:[miCarString,MiVarInteger,MivarFloat,OtraQUeseDescarta];
-(3)))*4+((35*2)
-4)+1
-(cinco))*(2+(3*5)+8
-((seis)+siete
- 4 > 5
-4<5
-a>=4
-3<=4
-4==5
-((seis)+siete<=(3)))*4+((35*2)
-a<3and3>2
-a<3 and 3>2
-(a<3 and 3>2)
-a>5
-IF(a>5)
-a+4
+-/if;
+WHILE (45 + .35 /33. -33.53*34..54)
+DO
+ENDWHILE
+IF
 ENDIF
 
-WHILE(a>5)
-ENDWHILE
-READ asd
-WRITE asd
-WRITE 5
--/ sintaxis que deben fallar -/
-[String,Integer,Float,ESTENOESUNTIPODEVARIABLE]:[miCarString,MiVarInteger,MivarFloat,OtraQUeseDescarta];
-asd otra cosa,
--/Comentario fallido asdasd */
--/Comentario 
-"HOla esto es una constante string que supera maximo"
-[String]
-[Integer,String,Float]
-[String,Integer,Float]
-[String,Integer]
-[String,Integer,Float]:[miCarString,MiVarInteger,MivarFloat,OtraQUeseDescarta,ConFInalMal,];
-[String,Integer,Float,TERMINAMALACA,]:[miCarString,MiVarInteger,MivarFloat,OtraQUeseDescarta];
-[String,Integer,Float,TERMINAMALACA,]:[miCarString,MiVarInteger,MivarFloat,OtraQUeseDescarta,YTERMINAMALACA,];
-cuatro)+)8*3
-READ 3
+ENDIF VARIABLE
+
+
+31...51

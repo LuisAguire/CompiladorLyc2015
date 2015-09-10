@@ -3,13 +3,14 @@
 #include <stdlib.h>
 #include <iostream>
 using namespace std;
+int lineCounter=1;
 %}
 %option noyywrap  
 %option yylineno
 CONSTANTE_ENTERA_AUX		{NUMERO}+
-CONSTANTE_REAL_AUX			{CONSTANTE_ENTERA_AUX}+"."+{CONSTANTE_ENTERA_AUX}|"."+{CONSTANTE_ENTERA_AUX}|{CONSTANTE_ENTERA_AUX}+"."
-CONSTANTE_ENTERA			{CONSTANTE_ENTERA_AUX}|"-"+{CONSTANTE_ENTERA_AUX}
-CONSTANTE_REAL				{CONSTANTE_REAL_AUX}|"-"+{CONSTANTE_REAL_AUX}	
+CONSTANTE_REAL_AUX			{CONSTANTE_ENTERA_AUX}"."{CONSTANTE_ENTERA_AUX}|"."{CONSTANTE_ENTERA_AUX}|{CONSTANTE_ENTERA_AUX}"."
+CONSTANTE_ENTERA			{CONSTANTE_ENTERA_AUX}|"-"{CONSTANTE_ENTERA_AUX}
+CONSTANTE_REAL				{CONSTANTE_REAL_AUX}|"-"{CONSTANTE_REAL_AUX}	
 CONSTANTE					{CONSTANTE_ENTERA}|{CONSTANTE_REAL}
 CONSTANTE_STRING			\".{0,30}\"
 CONSTANTE_STRING_SUPERA		\".{31,}\"
@@ -39,6 +40,7 @@ ASIGNACION					":="
 COMENTARIO					"-/".*"-/"
 CARRI_LINE					\n
 ESPACIO						" "
+UNRECOGNIZED				.
 %%
 {CONSTANTE_ENTERA}			{cout<<"Detecta constante entera: "<<yytext<<endl;}
 {CONSTANTE_REAL}			{cout<<"Detecta constante real: "<<yytext<<endl;}
@@ -63,9 +65,10 @@ ESPACIO						" "
 {OPERADOR_COMPARADOR}		{cout<<"Detecta comparador: "<<yytext<<endl;}
 {ASIGNACION}				{cout<<"Detecta asignacion: "<<yytext<<endl;}
 {COMENTARIO}				{cout<<"Detecta comentario: "<<yytext<<endl;}
-{CARRI_LINE}				{cout<<"Detecta salto de linea: "<<yytext<<endl;}
+{CARRI_LINE}				{lineCounter++;cout<<"Detecta salto de linea: "<<yytext<<endl;}
 {ESPACIO}					{cout<<"Detecta espacio: "<<yytext<<endl;}
 {PALABRA}					{cout<<"Detecta id: "<<yytext<<endl;}
+{UNRECOGNIZED}				{cout<<"*** Error Unrecognized Token: \""<<yytext<<"\". Line Number: "<<lineCounter<<endl;} 
 
 
 %%
