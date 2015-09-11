@@ -75,20 +75,3 @@ UNRECOGNIZED				.
 %%
 
 
-int main(int argc,char **argv)
-{
-	Singleton::getInstance()->mostrarMensage();
-	if(argc<2)
-	{
-		cout<<"Ingrese el archivo a compilar"<<endl;
-		return -1;
-	}
-	yyin=fopen(argv[1],"r");
-	if(yyin==NULL)
-	{
-		cout<<"Error abriendo archivo "<<argv[1]<<endl;
-		return -1;
-	}
-	yylex();
-	return 0;
-}
