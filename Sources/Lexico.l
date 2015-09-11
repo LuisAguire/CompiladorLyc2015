@@ -43,7 +43,7 @@ CARRI_LINE					\n
 ESPACIO						" "|\t
 UNRECOGNIZED				.
 %%
-{CONSTANTE_ENTERA}			{cout<<"Detecta constante entera: "<<yytext<<endl;}
+{CONSTANTE_ENTERA}			{cout<<"Detecta constante entera: "<<yytext<<endl;return 1;}
 {CONSTANTE_REAL}			{cout<<"Detecta constante real: "<<yytext<<endl;}
 {CONSTANTE_STRING}			{cout<<"Detecta constante string: "<<yytext<<endl;}
 {CONSTANTE_STRING_SUPERA}	{cout<<"Detecta constante string supera maximo: "<<yytext<<endl;}

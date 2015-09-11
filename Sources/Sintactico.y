@@ -8,9 +8,9 @@ void yyerror(const char *);
 using namespace std;
 extern FILE *yyin;
 %}
-%token regla
+%token regla 1 
 %%
-algo: regla
+algo: regla	{cout<<"LLEGO"<<endl;}
 
 %%
 
@@ -29,7 +29,7 @@ int main(int argc,char **argv)
 		return -1;
 	}
 	
-	//yyparse();
+	yyparse();
 	return 0;
 }
 
