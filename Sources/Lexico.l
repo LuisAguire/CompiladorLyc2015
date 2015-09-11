@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include "Singleton.hpp"
 using namespace std;
 int lineCounter=1;
 %}
@@ -76,6 +77,7 @@ UNRECOGNIZED				.
 
 int main(int argc,char **argv)
 {
+	Singleton::getInstance()->mostrarMensage();
 	if(argc<2)
 	{
 		cout<<"Ingrese el archivo a compilar"<<endl;

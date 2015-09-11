@@ -688,14 +688,15 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "Lexico.l"
-#line 2 "Lexico.l"
+#line 1 "Sources/Lexico.l"
+#line 2 "Sources/Lexico.l"
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include "Singleton.hpp"
 using namespace std;
 int lineCounter=1;
-#line 699 "lex.yy.c"
+#line 700 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -882,9 +883,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 44 "Lexico.l"
+#line 45 "Sources/Lexico.l"
 
-#line 888 "lex.yy.c"
+#line 889 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -979,146 +980,146 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 45 "Lexico.l"
+#line 46 "Sources/Lexico.l"
 {cout<<"Detecta constante entera: "<<yytext<<endl;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 46 "Lexico.l"
+#line 47 "Sources/Lexico.l"
 {cout<<"Detecta constante real: "<<yytext<<endl;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 47 "Lexico.l"
+#line 48 "Sources/Lexico.l"
 {cout<<"Detecta constante string: "<<yytext<<endl;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 48 "Lexico.l"
+#line 49 "Sources/Lexico.l"
 {cout<<"Detecta constante string supera maximo: "<<yytext<<endl;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 49 "Lexico.l"
+#line 50 "Sources/Lexico.l"
 {cout<<"Detecta if: "<<yytext<<endl;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 50 "Lexico.l"
+#line 51 "Sources/Lexico.l"
 {cout<<"Detecta endif: "<<yytext<<endl;}	
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 51 "Lexico.l"
+#line 52 "Sources/Lexico.l"
 {cout<<"Detecta while: "<<yytext<<endl;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 52 "Lexico.l"
+#line 53 "Sources/Lexico.l"
 {cout<<"Detecta do: "<<yytext<<endl;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 53 "Lexico.l"
+#line 54 "Sources/Lexico.l"
 {cout<<"Detecta endwhile: "<<yytext<<endl;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 54 "Lexico.l"
+#line 55 "Sources/Lexico.l"
 {cout<<"Detecta in: "<<yytext<<endl;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 55 "Lexico.l"
+#line 56 "Sources/Lexico.l"
 {cout<<"Detecta lectura: "<<yytext<<endl;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 56 "Lexico.l"
+#line 57 "Sources/Lexico.l"
 {cout<<"Detecta escritura: "<<yytext<<endl;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 57 "Lexico.l"
+#line 58 "Sources/Lexico.l"
 {cout<<"Detecta var declaracion: "<<yytext<<endl;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 58 "Lexico.l"
+#line 59 "Sources/Lexico.l"
 {cout<<"Detecta endvar: "<<yytext<<endl;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 59 "Lexico.l"
+#line 60 "Sources/Lexico.l"
 {cout<<"Detecta simbolo especial: "<<yytext<<endl;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 60 "Lexico.l"
+#line 61 "Sources/Lexico.l"
 {cout<<"Detecta Funcion Longitud"<<yytext<<endl;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 61 "Lexico.l"
+#line 62 "Sources/Lexico.l"
 {cout<<"Detecta tipo de dato: "<<yytext<<endl;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 62 "Lexico.l"
+#line 63 "Sources/Lexico.l"
 {cout<<"Detecta operador string: "<<yytext<<endl;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 63 "Lexico.l"
+#line 64 "Sources/Lexico.l"
 {cout<<"Detecta operador numerico: "<<yytext<<endl;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 64 "Lexico.l"
+#line 65 "Sources/Lexico.l"
 {cout<<"Detecta operador logico: "<<yytext<<endl;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 65 "Lexico.l"
+#line 66 "Sources/Lexico.l"
 {cout<<"Detecta comparador: "<<yytext<<endl;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 66 "Lexico.l"
+#line 67 "Sources/Lexico.l"
 {cout<<"Detecta asignacion: "<<yytext<<endl;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 67 "Lexico.l"
+#line 68 "Sources/Lexico.l"
 {cout<<"Detecta comentario: "<<yytext<<endl;}
 	YY_BREAK
 case 24:
 /* rule 24 can match eol */
 YY_RULE_SETUP
-#line 68 "Lexico.l"
+#line 69 "Sources/Lexico.l"
 {lineCounter++;cout<<"Detecta salto de linea: "<<yytext<<endl;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 69 "Lexico.l"
+#line 70 "Sources/Lexico.l"
 {cout<<"Detecta espacio: "<<yytext<<endl;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 70 "Lexico.l"
+#line 71 "Sources/Lexico.l"
 {cout<<"Detecta id: "<<yytext<<endl;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 71 "Lexico.l"
+#line 72 "Sources/Lexico.l"
 {cout<<"*** Error Unrecognized Token: \""<<yytext<<"\". Line Number: "<<lineCounter<<endl;} 
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 74 "Lexico.l"
+#line 75 "Sources/Lexico.l"
 ECHO;
 	YY_BREAK
-#line 1122 "lex.yy.c"
+#line 1123 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2128,13 +2129,14 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 74 "Lexico.l"
+#line 75 "Sources/Lexico.l"
 
 
 
 
 int main(int argc,char **argv)
 {
+	Singleton::getInstance()->mostrarMensage();
 	if(argc<2)
 	{
 		cout<<"Ingrese el archivo a compilar"<<endl;
@@ -2149,3 +2151,4 @@ int main(int argc,char **argv)
 	yylex();
 	return 0;
 }
+
