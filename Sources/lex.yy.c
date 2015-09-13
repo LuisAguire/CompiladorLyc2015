@@ -1254,16 +1254,18 @@ YY_RULE_SETUP
 case 48:
 YY_RULE_SETUP
 #line 116 "Sources/Lexico.l"
-{PRINT("*** Error Unrecognized Token: \""<<yytext<<"\". Line Number: "<<lineCounter); fclose(yyin); exit(1);} 
+{cout<<"*** Error Unrecognized Token: \""<<yytext<<"\". Line Number: "<<lineCounter<<endl; PRINT("*** Error Unrecognized Token: \""<<yytext<<"\". Line Number: "<<lineCounter); fclose(yyin); exit(1);}
+	YY_BREAK
+case YY_STATE_EOF(INITIAL):
+#line 117 "Sources/Lexico.l"
+{PRINT("Detecta fin de archivo: "); return END_OF_FILE;} 
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 117 "Sources/Lexico.l"
+#line 118 "Sources/Lexico.l"
 ECHO;
 	YY_BREAK
-#line 1265 "lex.yy.c"
-case YY_STATE_EOF(INITIAL):
-	yyterminate();
+#line 1269 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2271,7 +2273,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 117 "Sources/Lexico.l"
+#line 118 "Sources/Lexico.l"
 
 
 

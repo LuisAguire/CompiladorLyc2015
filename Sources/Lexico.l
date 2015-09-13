@@ -113,7 +113,8 @@ UNRECOGNIZED						.
 {CARRI_LINE}							{lineCounter++;PRINT("Detecta salto de linea: "<<yytext); }
 {ESPACIO}								{PRINT("Detecta espacio: "<<yytext);}
 {PALABRA}								{PRINT("Detecta id: "<<yytext); return ID;}
-{UNRECOGNIZED}							{PRINT("*** Error Unrecognized Token: \""<<yytext<<"\". Line Number: "<<lineCounter); fclose(yyin); exit(1);} 
+{UNRECOGNIZED}							{cout<<"*** Error Unrecognized Token: \""<<yytext<<"\". Line Number: "<<lineCounter<<endl; PRINT("*** Error Unrecognized Token: \""<<yytext<<"\". Line Number: "<<lineCounter); fclose(yyin); exit(1);}
+<<EOF>>									{PRINT("Detecta fin de archivo: "); return END_OF_FILE;} 
 %%
 
 

@@ -8,6 +8,7 @@ void yyerror(const char *);
 using namespace std;
 extern FILE *yyin;
 extern int lineCounter;
+bool compileSucess=false;
 #define PRINT(x)			cout<<"Sintactico: "<<x<<endl;
 %}
 
@@ -60,19 +61,22 @@ extern int lineCounter;
 %token COMENTARIO2
 %token CONST
 %token ID
+%token END_OF_FILE
 
 %left MAS MENOS
 %left MUL DIV							
 
 
 %%
-	
-inicio: INICIO_PROG declaracion lista_sentencia FIN_PROG 				{PRINT("Inicio de programa");};
-		| INICIO_PROG declaracion FIN_PROG 								{PRINT("Inicio de Programa solo declaracion");};
-		| INICIO_PROG lista_sentencia FIN_PROG							{PRINT("Inicio de Programa solo sentencias");};
-		| INICIO_PROG FIN_PROG 											{PRINT("Inicio de programa vacio");};
+
+
+inicio: INICIO_PROG declaracion lista_sentencia FIN_PROG END_OF_FILE	{PRINT("Inicio de programa completo"); compileSucess=true;};
+		| INICIO_PROG declaracion FIN_PROG END_OF_FILE					{PRINT("Inicio de Programa solo declaracion");compileSucess=true;};
+		| INICIO_PROG lista_sentencia FIN_PROG	END_OF_FILE 			{PRINT("Inicio de Programa solo sentencias");compileSucess=true;};
+		| INICIO_PROG FIN_PROG END_OF_FILE								{PRINT("Inicio de programa vacio");compileSucess=true;};
 
 															
+
 
 lista_sentencia : sentencia 											{ PRINT("Sentencia"); };
                 | lista_sentencia sentencia 							{ PRINT("Lista de Sentencias"); };
@@ -132,7 +136,23 @@ decision : decisionPrimera lista_sentencia ENDIF 						{ PRINT("if sin else body
 declaracion: VAR lista_declaraciones ENDVAR 							{PRINT("Declaraciones de variables");};
 
 lista_declaraciones: tipo IID 			  								{PRINT("Declaracion sub i");};
-					| lista_declaraciones tipo IID				 		{PRINT("declaracion de variables");};
+					| lista_declaraciones tipo IID				 		{PRINT("Declaracion de variables");};
+					| declaracion_especial								{PRINT("Declaracion de variable especial");}
+					| lista_declaraciones declaracion_especial			{PRINT("Declaracion especial sub i");}
+
+declaracion_especial:	tipos_datos_varios DOS_PUNTOS ids_datos_varios	{PRINT("Declaracion especial tipo dos puntos ids");}
+
+tipos_datos_varios: CORCHETE_ABRE tipos_datos CORCHETE_CIERRA			{PRINT("Declaracion especial corchete tipos corchete");}
+
+ids_datos_varios:CORCHETE_ABRE ids_datos CORCHETE_CIERRA				{PRINT("Declaracion especial corchete ids corchete");}
+
+tipos_datos: tipo														{PRINT("Declaracion especial tipo");}
+			|tipo COMA tipos_datos										{PRINT("Declaracion especial tipo coma");}	
+			
+ids_datos: IID															{PRINT("Declaracion especial id");}
+		| IID COMA ids_datos											{PRINT("Declaracion especial id coma");}
+	
+ 
 					
 cte : CONSTANTE_REAL 													{PRINT("Constante real");};
     | CONSTANTE_INT  													{PRINT("Constante entera");};
@@ -177,5 +197,11 @@ int main(int argc,char **argv)
 
 void yyerror(const char *error)
 {
+	if(compileSucess)
+	{
+		PRINT("Compilacion OK");
+		fclose(yyin);
+		exit(0);
+	}
 	PRINT(error<<" line number: "<<lineCounter);
 }

@@ -92,7 +92,8 @@ extern int yydebug;
     COMENTARIO = 302,
     COMENTARIO2 = 303,
     CONST = 304,
-    ID = 305
+    ID = 305,
+    END_OF_FILE = 306
   };
 #endif
 

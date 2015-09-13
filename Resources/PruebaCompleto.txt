@@ -1,0 +1,34 @@
+INICIOPROG
+   IF  ( a + 4 ) < 5 AND  B != 3  THEN
+	WHILE  ( a + 4 ) < 5 AND  B != 3  DO 
+      
+      WHILE  ( a + 4 ) < 5 AND  B != 3  DO
+      A := 8
+      
+      IF  ( a + 4 ) < 5 AND  B != 3  THEN
+        IF  ( a + 4 ) < 5 AND  B != 3  THEN
+          G := 6
+        ENDIF
+        
+      ENDIF
+      ENDWHILE
+      s:=4
+	ENDWHILE
+  ENDIF	
+  	a:=5
+	b:=a+4
+	e:=5*8
+	a:=-5
+	result:=a- 3
+	result:=a/3
+	result:=4+8*2- 2*id
+	result:=4+(8*2)- 2*id
+	result:=a/3
+	
+	 IF  ( a + 4 ) < 5 AND  B != 3  THEN
+	    A := 5
+	 ELSE
+    	 b := 8
+	 ENDIF
+	
+FINPROG

@@ -1,0 +1,14 @@
+Version 1.2
+	Implementa Pendiente[1.1-1]
+	Implementa Pendiente[1.1-3]	
+------------------------------------------------------------------------------------------------------------
+Version 1.1
+	Pendiente[1.1-1]: falta resolver el fin de archivo y mostrar compilacion exitosa
+	Pendiente[1.1-2]: falta concatenacion de strings,perteneciente a temas comunes	
+	Pendiente[1.1-3]: falta declaracion de variable especial con formato [tipo,tipo]:[id,id],perteneciente a temas comunes
+	Pendiente[1.1-4]: falta funcion especial long, pertenecientes a temas especiales
+	Pendiente[1.1-5]: falta ciclo especial while in, pertenecientes a temas especiales
+	Pendiente[1.1-:6] falta tabla de simbolos
+	En esta version aun no se debe implementar la generacion de codigo intermedio.
+		
+	
