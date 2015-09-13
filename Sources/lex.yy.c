@@ -1158,7 +1158,7 @@ YY_RULE_SETUP
 case 29:
 YY_RULE_SETUP
 #line 97 "Sources/Lexico.l"
-{PRINT("Detecta operador string: "<<yytext); return MAS_STRING;}
+{PRINT("Detecta operador string: "<<yytext); return CONCATENACION;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
