@@ -94,7 +94,7 @@ UNRECOGNIZED						.
 {TIPO_INT}								{PRINT("Detecta tipo de dato entero: "<<yytext); return INT;}
 {TIPO_REAL}							    {PRINT("Detecta tipo de dato real: "<<yytext); return REAL;}
 {TIPO_STRING}						    {PRINT("Detecta tipo de dato string: "<<yytext); return STRING;}
-{OPERADOR_STRING}						{PRINT("Detecta operador string: "<<yytext); return MAS_STRING;}
+{OPERADOR_STRING}						{PRINT("Detecta operador string: "<<yytext); return CONCATENACION;}
 {OPERADOR_NUMERICO_MAS}					{PRINT("Detecta operador numerico: "<<yytext); return MAS;}
 {OPERADOR_NUMERICO_MENOS}				{PRINT("Detecta operador numerico: "<<yytext); return MENOS;}
 {OPERADOR_NUMERICO_POR}					{PRINT("Detecta operador numerico: "<<yytext); return MUL;}

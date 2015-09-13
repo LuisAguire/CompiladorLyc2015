@@ -162,7 +162,9 @@ cte : CONSTANTE_REAL 													{PRINT("Constante real");};
 concatenacion:  cadena CONCATENACION cadena 							{PRINT("Concatena Cadena ");};
 			   | IID CONCATENACION cadena 								{PRINT("Concatena Identificador Cadena");};
 			   | cadena CONCATENACION IID 								{PRINT("Concatena Cadena Identificador");};
-			   | IID CONCATENACION IID 									{PRINT("Concatena Identificador Identificador\n");}; 
+			   | IID CONCATENACION IID 									{PRINT("Concatena Identificador Identificador\n");};
+			   | concatenacion  CONCATENACION IID
+			   |  concatenacion  CONCATENACION cadena
     
 tipo :  REAL 															{PRINT("tipo real");};
 	| INT 																{PRINT("tipo entero");};
