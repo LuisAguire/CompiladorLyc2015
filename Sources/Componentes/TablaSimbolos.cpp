@@ -34,7 +34,6 @@ void TablaSimbolos::finDeDeclaraciones()
 }
 void TablaSimbolos::addTipo(string tipo)
 {
-	cout<<"Agrega tipo :"<<tipo<<endl;
 	if(currentState==EstadoValidaIds)
 	{
 		cout<<"*** Fatal error, aborta "<<endl;
@@ -45,7 +44,6 @@ void TablaSimbolos::addTipo(string tipo)
 
 void TablaSimbolos::addId(string name,int lineNro)
 {
-	cout<<"Agrega id :"<<name<<endl;
 	if( currentState==EstadoValidaIds)
 	{
 		if(isIdPresent(name))
@@ -80,23 +78,19 @@ void TablaSimbolos::finDeclaracionActual()
 
 bool TablaSimbolos::isIdPresent(string name,VariablesDefinidas *data)
 {
-	cout<<"Busca id: " <<name<<endl;
+
 	map<string,VariablesDefinidas>::iterator it=variables.find(name);
 	if(it==variables.end())
 	{
-		cout<<" no encontro en mapa"<<endl;
 		vector<string>::iterator ids=currentIds.begin();
 		while(ids!=currentIds.end())
 		{
-			cout<<"Busca en vector"<<endl;
 			if(*ids==name)
 			{
-				cout<<"LLEGO ACA"<<endl;
 				if(data)
 					data->lineNro=lastLine;
 				return true;
 			}
-			cout<<"LLEGO ACA"<<endl;
 			ids++;
 		}
 		return false;
