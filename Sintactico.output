@@ -1,0 +1,1496 @@
+Terminals unused in grammar
+
+   FUNCION_LONG
+   IN
+   MAS_STRING
+   PUNTO
+   COMENTARIO
+   COMENTARIO2
+   CONST
+
+
+Grammar
+
+    0 $accept: inicio $end
+
+    1 inicio: INICIO_PROG declaracion lista_sentencia FIN_PROG END_OF_FILE
+    2       | INICIO_PROG declaracion FIN_PROG END_OF_FILE
+    3       | INICIO_PROG lista_sentencia FIN_PROG END_OF_FILE
+    4       | INICIO_PROG FIN_PROG END_OF_FILE
+
+    5 lista_sentencia: sentencia
+    6                | lista_sentencia sentencia
+
+    7 sentencia: iteracion
+    8          | decision
+    9          | asignacion
+   10          | impresion
+   11          | ingreso
+
+   12 $@1: %empty
+
+   13 iteracion: WHILE cond DO $@1 lista_sentencia ENDWHILE
+
+   14 cond: exp_logica AND exp_logica
+   15     | exp_logica OR exp_logica
+   16     | exp_logica
+   17     | NOT exp_logica
+
+   18 exp_logica: exp comp exp
+
+   19 comp: MAYOR_IGUAL
+   20     | MENOR_IGUAL
+   21     | DISTINTO
+   22     | IGUAL
+   23     | MAYOR
+   24     | MENOR
+
+   25 exp: exp MAS termino
+   26    | exp MENOS termino
+   27    | termino
+   28    | concatenacion
+
+   29 termino: termino MUL factor
+   30        | termino DIV factor
+   31        | factor
+
+   32 factor: IID
+   33       | cte
+   34       | PARENT_ABRE exp PARENT_CIERRA
+
+   35 asignacion: IID ASIGNACION exp
+
+   36 impresion: WRITE IID
+   37          | WRITE cadena
+
+   38 ingreso: READ IID
+
+   39 decisionPrimera: IF cond THEN
+
+   40 decision: decisionPrimera lista_sentencia ENDIF
+   41         | decisionPrimera lista_sentencia ELSE lista_sentencia ENDIF
+
+   42 declaracion: VAR lista_declaraciones ENDVAR
+
+   43 lista_declaraciones: tipo IID
+   44                    | lista_declaraciones tipo IID
+   45                    | declaracion_especial
+   46                    | lista_declaraciones declaracion_especial
+
+   47 declaracion_especial: tipos_datos_varios DOS_PUNTOS ids_datos_varios
+
+   48 tipos_datos_varios: CORCHETE_ABRE tipos_datos CORCHETE_CIERRA
+
+   49 ids_datos_varios: CORCHETE_ABRE ids_datos CORCHETE_CIERRA
+
+   50 tipos_datos: tipo
+   51            | tipo COMA tipos_datos
+
+   52 ids_datos: IID
+   53          | IID COMA ids_datos
+
+   54 cte: CONSTANTE_REAL
+   55    | CONSTANTE_INT
+   56    | CONSTANTE_STRING
+
+   57 concatenacion: cadena CONCATENACION cadena
+   58              | IID CONCATENACION cadena
+   59              | cadena CONCATENACION IID
+   60              | IID CONCATENACION IID
+   61              | concatenacion CONCATENACION IID
+   62              | concatenacion CONCATENACION cadena
+
+   63 tipo: REAL
+   64     | INT
+   65     | STRING
+
+   66 cadena: CONSTANTE_STRING
+
+   67 IID: ID
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+INICIO_PROG (258) 1 2 3 4
+FIN_PROG (259) 1 2 3 4
+WHILE (260) 13
+DO (261) 13
+ENDWHILE (262) 13
+FUNCION_LONG (263)
+IN (264)
+AND (265) 14
+OR (266) 15
+NOT (267) 17
+MAYOR (268) 23
+MAYOR_IGUAL (269) 19
+MENOR (270) 24
+MENOR_IGUAL (271) 20
+IGUAL (272) 22
+DISTINTO (273) 21
+MAS (274) 25
+MENOS (275) 26
+MUL (276) 29
+DIV (277) 30
+MAS_STRING (278)
+ASIGNACION (279) 35
+PARENT_ABRE (280) 34
+PARENT_CIERRA (281) 34
+WRITE (282) 36 37
+READ (283) 38
+IF (284) 39
+THEN (285) 39
+ENDIF (286) 40 41
+ELSE (287) 41
+COMA (288) 51 53
+REAL (289) 63
+INT (290) 64
+STRING (291) 65
+CORCHETE_ABRE (292) 48 49
+CORCHETE_CIERRA (293) 48 49
+DOS_PUNTOS (294) 47
+PUNTO (295)
+VAR (296) 42
+ENDVAR (297) 42
+CONCATENACION (298) 57 58 59 60 61 62
+CONSTANTE_STRING (299) 56 66
+CONSTANTE_INT (300) 55
+CONSTANTE_REAL (301) 54
+COMENTARIO (302)
+COMENTARIO2 (303)
+CONST (304)
+ID (305) 67
+END_OF_FILE (306) 1 2 3 4
+
+
+Nonterminals, with rules where they appear
+
+$accept (52)
+    on left: 0
+inicio (53)
+    on left: 1 2 3 4, on right: 0
+lista_sentencia (54)
+    on left: 5 6, on right: 1 3 6 13 40 41
+sentencia (55)
+    on left: 7 8 9 10 11, on right: 5 6
+iteracion (56)
+    on left: 13, on right: 7
+$@1 (57)
+    on left: 12, on right: 13
+cond (58)
+    on left: 14 15 16 17, on right: 13 39
+exp_logica (59)
+    on left: 18, on right: 14 15 16 17
+comp (60)
+    on left: 19 20 21 22 23 24, on right: 18
+exp (61)
+    on left: 25 26 27 28, on right: 18 25 26 34 35
+termino (62)
+    on left: 29 30 31, on right: 25 26 27 29 30
+factor (63)
+    on left: 32 33 34, on right: 29 30 31
+asignacion (64)
+    on left: 35, on right: 9
+impresion (65)
+    on left: 36 37, on right: 10
+ingreso (66)
+    on left: 38, on right: 11
+decisionPrimera (67)
+    on left: 39, on right: 40 41
+decision (68)
+    on left: 40 41, on right: 8
+declaracion (69)
+    on left: 42, on right: 1 2
+lista_declaraciones (70)
+    on left: 43 44 45 46, on right: 42 44 46
+declaracion_especial (71)
+    on left: 47, on right: 45 46
+tipos_datos_varios (72)
+    on left: 48, on right: 47
+ids_datos_varios (73)
+    on left: 49, on right: 47
+tipos_datos (74)
+    on left: 50 51, on right: 48 51
+ids_datos (75)
+    on left: 52 53, on right: 49 53
+cte (76)
+    on left: 54 55 56, on right: 33
+concatenacion (77)
+    on left: 57 58 59 60 61 62, on right: 28 61 62
+tipo (78)
+    on left: 63 64 65, on right: 43 44 50 51
+cadena (79)
+    on left: 66, on right: 37 57 58 59 62
+IID (80)
+    on left: 67, on right: 32 35 36 38 43 44 52 53 58 59 60 61
+
+
+State 0
+
+    0 $accept: . inicio $end
+
+    INICIO_PROG  shift, and go to state 1
+
+    inicio  go to state 2
+
+
+State 1
+
+    1 inicio: INICIO_PROG . declaracion lista_sentencia FIN_PROG END_OF_FILE
+    2       | INICIO_PROG . declaracion FIN_PROG END_OF_FILE
+    3       | INICIO_PROG . lista_sentencia FIN_PROG END_OF_FILE
+    4       | INICIO_PROG . FIN_PROG END_OF_FILE
+
+    FIN_PROG  shift, and go to state 3
+    WHILE     shift, and go to state 4
+    WRITE     shift, and go to state 5
+    READ      shift, and go to state 6
+    IF        shift, and go to state 7
+    VAR       shift, and go to state 8
+    ID        shift, and go to state 9
+
+    lista_sentencia  go to state 10
+    sentencia        go to state 11
+    iteracion        go to state 12
+    asignacion       go to state 13
+    impresion        go to state 14
+    ingreso          go to state 15
+    decisionPrimera  go to state 16
+    decision         go to state 17
+    declaracion      go to state 18
+    IID              go to state 19
+
+
+State 2
+
+    0 $accept: inicio . $end
+
+    $end  shift, and go to state 20
+
+
+State 3
+
+    4 inicio: INICIO_PROG FIN_PROG . END_OF_FILE
+
+    END_OF_FILE  shift, and go to state 21
+
+
+State 4
+
+   13 iteracion: WHILE . cond DO $@1 lista_sentencia ENDWHILE
+
+    NOT               shift, and go to state 22
+    PARENT_ABRE       shift, and go to state 23
+    CONSTANTE_STRING  shift, and go to state 24
+    CONSTANTE_INT     shift, and go to state 25
+    CONSTANTE_REAL    shift, and go to state 26
+    ID                shift, and go to state 9
+
+    cond           go to state 27
+    exp_logica     go to state 28
+    exp            go to state 29
+    termino        go to state 30
+    factor         go to state 31
+    cte            go to state 32
+    concatenacion  go to state 33
+    cadena         go to state 34
+    IID            go to state 35
+
+
+State 5
+
+   36 impresion: WRITE . IID
+   37          | WRITE . cadena
+
+    CONSTANTE_STRING  shift, and go to state 36
+    ID                shift, and go to state 9
+
+    cadena  go to state 37
+    IID     go to state 38
+
+
+State 6
+
+   38 ingreso: READ . IID
+
+    ID  shift, and go to state 9
+
+    IID  go to state 39
+
+
+State 7
+
+   39 decisionPrimera: IF . cond THEN
+
+    NOT               shift, and go to state 22
+    PARENT_ABRE       shift, and go to state 23
+    CONSTANTE_STRING  shift, and go to state 24
+    CONSTANTE_INT     shift, and go to state 25
+    CONSTANTE_REAL    shift, and go to state 26
+    ID                shift, and go to state 9
+
+    cond           go to state 40
+    exp_logica     go to state 28
+    exp            go to state 29
+    termino        go to state 30
+    factor         go to state 31
+    cte            go to state 32
+    concatenacion  go to state 33
+    cadena         go to state 34
+    IID            go to state 35
+
+
+State 8
+
+   42 declaracion: VAR . lista_declaraciones ENDVAR
+
+    REAL           shift, and go to state 41
+    INT            shift, and go to state 42
+    STRING         shift, and go to state 43
+    CORCHETE_ABRE  shift, and go to state 44
+
+    lista_declaraciones   go to state 45
+    declaracion_especial  go to state 46
+    tipos_datos_varios    go to state 47
+    tipo                  go to state 48
+
+
+State 9
+
+   67 IID: ID .
+
+    $default  reduce using rule 67 (IID)
+
+
+State 10
+
+    3 inicio: INICIO_PROG lista_sentencia . FIN_PROG END_OF_FILE
+    6 lista_sentencia: lista_sentencia . sentencia
+
+    FIN_PROG  shift, and go to state 49
+    WHILE     shift, and go to state 4
+    WRITE     shift, and go to state 5
+    READ      shift, and go to state 6
+    IF        shift, and go to state 7
+    ID        shift, and go to state 9
+
+    sentencia        go to state 50
+    iteracion        go to state 12
+    asignacion       go to state 13
+    impresion        go to state 14
+    ingreso          go to state 15
+    decisionPrimera  go to state 16
+    decision         go to state 17
+    IID              go to state 19
+
+
+State 11
+
+    5 lista_sentencia: sentencia .
+
+    $default  reduce using rule 5 (lista_sentencia)
+
+
+State 12
+
+    7 sentencia: iteracion .
+
+    $default  reduce using rule 7 (sentencia)
+
+
+State 13
+
+    9 sentencia: asignacion .
+
+    $default  reduce using rule 9 (sentencia)
+
+
+State 14
+
+   10 sentencia: impresion .
+
+    $default  reduce using rule 10 (sentencia)
+
+
+State 15
+
+   11 sentencia: ingreso .
+
+    $default  reduce using rule 11 (sentencia)
+
+
+State 16
+
+   40 decision: decisionPrimera . lista_sentencia ENDIF
+   41         | decisionPrimera . lista_sentencia ELSE lista_sentencia ENDIF
+
+    WHILE  shift, and go to state 4
+    WRITE  shift, and go to state 5
+    READ   shift, and go to state 6
+    IF     shift, and go to state 7
+    ID     shift, and go to state 9
+
+    lista_sentencia  go to state 51
+    sentencia        go to state 11
+    iteracion        go to state 12
+    asignacion       go to state 13
+    impresion        go to state 14
+    ingreso          go to state 15
+    decisionPrimera  go to state 16
+    decision         go to state 17
+    IID              go to state 19
+
+
+State 17
+
+    8 sentencia: decision .
+
+    $default  reduce using rule 8 (sentencia)
+
+
+State 18
+
+    1 inicio: INICIO_PROG declaracion . lista_sentencia FIN_PROG END_OF_FILE
+    2       | INICIO_PROG declaracion . FIN_PROG END_OF_FILE
+
+    FIN_PROG  shift, and go to state 52
+    WHILE     shift, and go to state 4
+    WRITE     shift, and go to state 5
+    READ      shift, and go to state 6
+    IF        shift, and go to state 7
+    ID        shift, and go to state 9
+
+    lista_sentencia  go to state 53
+    sentencia        go to state 11
+    iteracion        go to state 12
+    asignacion       go to state 13
+    impresion        go to state 14
+    ingreso          go to state 15
+    decisionPrimera  go to state 16
+    decision         go to state 17
+    IID              go to state 19
+
+
+State 19
+
+   35 asignacion: IID . ASIGNACION exp
+
+    ASIGNACION  shift, and go to state 54
+
+
+State 20
+
+    0 $accept: inicio $end .
+
+    $default  accept
+
+
+State 21
+
+    4 inicio: INICIO_PROG FIN_PROG END_OF_FILE .
+
+    $default  reduce using rule 4 (inicio)
+
+
+State 22
+
+   17 cond: NOT . exp_logica
+
+    PARENT_ABRE       shift, and go to state 23
+    CONSTANTE_STRING  shift, and go to state 24
+    CONSTANTE_INT     shift, and go to state 25
+    CONSTANTE_REAL    shift, and go to state 26
+    ID                shift, and go to state 9
+
+    exp_logica     go to state 55
+    exp            go to state 29
+    termino        go to state 30
+    factor         go to state 31
+    cte            go to state 32
+    concatenacion  go to state 33
+    cadena         go to state 34
+    IID            go to state 35
+
+
+State 23
+
+   34 factor: PARENT_ABRE . exp PARENT_CIERRA
+
+    PARENT_ABRE       shift, and go to state 23
+    CONSTANTE_STRING  shift, and go to state 24
+    CONSTANTE_INT     shift, and go to state 25
+    CONSTANTE_REAL    shift, and go to state 26
+    ID                shift, and go to state 9
+
+    exp            go to state 56
+    termino        go to state 30
+    factor         go to state 31
+    cte            go to state 32
+    concatenacion  go to state 33
+    cadena         go to state 34
+    IID            go to state 35
+
+
+State 24
+
+   56 cte: CONSTANTE_STRING .
+   66 cadena: CONSTANTE_STRING .
+
+    CONCATENACION  reduce using rule 66 (cadena)
+    $default       reduce using rule 56 (cte)
+
+
+State 25
+
+   55 cte: CONSTANTE_INT .
+
+    $default  reduce using rule 55 (cte)
+
+
+State 26
+
+   54 cte: CONSTANTE_REAL .
+
+    $default  reduce using rule 54 (cte)
+
+
+State 27
+
+   13 iteracion: WHILE cond . DO $@1 lista_sentencia ENDWHILE
+
+    DO  shift, and go to state 57
+
+
+State 28
+
+   14 cond: exp_logica . AND exp_logica
+   15     | exp_logica . OR exp_logica
+   16     | exp_logica .
+
+    AND  shift, and go to state 58
+    OR   shift, and go to state 59
+
+    $default  reduce using rule 16 (cond)
+
+
+State 29
+
+   18 exp_logica: exp . comp exp
+   25 exp: exp . MAS termino
+   26    | exp . MENOS termino
+
+    MAYOR        shift, and go to state 60
+    MAYOR_IGUAL  shift, and go to state 61
+    MENOR        shift, and go to state 62
+    MENOR_IGUAL  shift, and go to state 63
+    IGUAL        shift, and go to state 64
+    DISTINTO     shift, and go to state 65
+    MAS          shift, and go to state 66
+    MENOS        shift, and go to state 67
+
+    comp  go to state 68
+
+
+State 30
+
+   27 exp: termino .
+   29 termino: termino . MUL factor
+   30        | termino . DIV factor
+
+    MUL  shift, and go to state 69
+    DIV  shift, and go to state 70
+
+    $default  reduce using rule 27 (exp)
+
+
+State 31
+
+   31 termino: factor .
+
+    $default  reduce using rule 31 (termino)
+
+
+State 32
+
+   33 factor: cte .
+
+    $default  reduce using rule 33 (factor)
+
+
+State 33
+
+   28 exp: concatenacion .
+   61 concatenacion: concatenacion . CONCATENACION IID
+   62              | concatenacion . CONCATENACION cadena
+
+    CONCATENACION  shift, and go to state 71
+
+    $default  reduce using rule 28 (exp)
+
+
+State 34
+
+   57 concatenacion: cadena . CONCATENACION cadena
+   59              | cadena . CONCATENACION IID
+
+    CONCATENACION  shift, and go to state 72
+
+
+State 35
+
+   32 factor: IID .
+   58 concatenacion: IID . CONCATENACION cadena
+   60              | IID . CONCATENACION IID
+
+    CONCATENACION  shift, and go to state 73
+
+    $default  reduce using rule 32 (factor)
+
+
+State 36
+
+   66 cadena: CONSTANTE_STRING .
+
+    $default  reduce using rule 66 (cadena)
+
+
+State 37
+
+   37 impresion: WRITE cadena .
+
+    $default  reduce using rule 37 (impresion)
+
+
+State 38
+
+   36 impresion: WRITE IID .
+
+    $default  reduce using rule 36 (impresion)
+
+
+State 39
+
+   38 ingreso: READ IID .
+
+    $default  reduce using rule 38 (ingreso)
+
+
+State 40
+
+   39 decisionPrimera: IF cond . THEN
+
+    THEN  shift, and go to state 74
+
+
+State 41
+
+   63 tipo: REAL .
+
+    $default  reduce using rule 63 (tipo)
+
+
+State 42
+
+   64 tipo: INT .
+
+    $default  reduce using rule 64 (tipo)
+
+
+State 43
+
+   65 tipo: STRING .
+
+    $default  reduce using rule 65 (tipo)
+
+
+State 44
+
+   48 tipos_datos_varios: CORCHETE_ABRE . tipos_datos CORCHETE_CIERRA
+
+    REAL    shift, and go to state 41
+    INT     shift, and go to state 42
+    STRING  shift, and go to state 43
+
+    tipos_datos  go to state 75
+    tipo         go to state 76
+
+
+State 45
+
+   42 declaracion: VAR lista_declaraciones . ENDVAR
+   44 lista_declaraciones: lista_declaraciones . tipo IID
+   46                    | lista_declaraciones . declaracion_especial
+
+    REAL           shift, and go to state 41
+    INT            shift, and go to state 42
+    STRING         shift, and go to state 43
+    CORCHETE_ABRE  shift, and go to state 44
+    ENDVAR         shift, and go to state 77
+
+    declaracion_especial  go to state 78
+    tipos_datos_varios    go to state 47
+    tipo                  go to state 79
+
+
+State 46
+
+   45 lista_declaraciones: declaracion_especial .
+
+    $default  reduce using rule 45 (lista_declaraciones)
+
+
+State 47
+
+   47 declaracion_especial: tipos_datos_varios . DOS_PUNTOS ids_datos_varios
+
+    DOS_PUNTOS  shift, and go to state 80
+
+
+State 48
+
+   43 lista_declaraciones: tipo . IID
+
+    ID  shift, and go to state 9
+
+    IID  go to state 81
+
+
+State 49
+
+    3 inicio: INICIO_PROG lista_sentencia FIN_PROG . END_OF_FILE
+
+    END_OF_FILE  shift, and go to state 82
+
+
+State 50
+
+    6 lista_sentencia: lista_sentencia sentencia .
+
+    $default  reduce using rule 6 (lista_sentencia)
+
+
+State 51
+
+    6 lista_sentencia: lista_sentencia . sentencia
+   40 decision: decisionPrimera lista_sentencia . ENDIF
+   41         | decisionPrimera lista_sentencia . ELSE lista_sentencia ENDIF
+
+    WHILE  shift, and go to state 4
+    WRITE  shift, and go to state 5
+    READ   shift, and go to state 6
+    IF     shift, and go to state 7
+    ENDIF  shift, and go to state 83
+    ELSE   shift, and go to state 84
+    ID     shift, and go to state 9
+
+    sentencia        go to state 50
+    iteracion        go to state 12
+    asignacion       go to state 13
+    impresion        go to state 14
+    ingreso          go to state 15
+    decisionPrimera  go to state 16
+    decision         go to state 17
+    IID              go to state 19
+
+
+State 52
+
+    2 inicio: INICIO_PROG declaracion FIN_PROG . END_OF_FILE
+
+    END_OF_FILE  shift, and go to state 85
+
+
+State 53
+
+    1 inicio: INICIO_PROG declaracion lista_sentencia . FIN_PROG END_OF_FILE
+    6 lista_sentencia: lista_sentencia . sentencia
+
+    FIN_PROG  shift, and go to state 86
+    WHILE     shift, and go to state 4
+    WRITE     shift, and go to state 5
+    READ      shift, and go to state 6
+    IF        shift, and go to state 7
+    ID        shift, and go to state 9
+
+    sentencia        go to state 50
+    iteracion        go to state 12
+    asignacion       go to state 13
+    impresion        go to state 14
+    ingreso          go to state 15
+    decisionPrimera  go to state 16
+    decision         go to state 17
+    IID              go to state 19
+
+
+State 54
+
+   35 asignacion: IID ASIGNACION . exp
+
+    PARENT_ABRE       shift, and go to state 23
+    CONSTANTE_STRING  shift, and go to state 24
+    CONSTANTE_INT     shift, and go to state 25
+    CONSTANTE_REAL    shift, and go to state 26
+    ID                shift, and go to state 9
+
+    exp            go to state 87
+    termino        go to state 30
+    factor         go to state 31
+    cte            go to state 32
+    concatenacion  go to state 33
+    cadena         go to state 34
+    IID            go to state 35
+
+
+State 55
+
+   17 cond: NOT exp_logica .
+
+    $default  reduce using rule 17 (cond)
+
+
+State 56
+
+   25 exp: exp . MAS termino
+   26    | exp . MENOS termino
+   34 factor: PARENT_ABRE exp . PARENT_CIERRA
+
+    MAS            shift, and go to state 66
+    MENOS          shift, and go to state 67
+    PARENT_CIERRA  shift, and go to state 88
+
+
+State 57
+
+   13 iteracion: WHILE cond DO . $@1 lista_sentencia ENDWHILE
+
+    $default  reduce using rule 12 ($@1)
+
+    $@1  go to state 89
+
+
+State 58
+
+   14 cond: exp_logica AND . exp_logica
+
+    PARENT_ABRE       shift, and go to state 23
+    CONSTANTE_STRING  shift, and go to state 24
+    CONSTANTE_INT     shift, and go to state 25
+    CONSTANTE_REAL    shift, and go to state 26
+    ID                shift, and go to state 9
+
+    exp_logica     go to state 90
+    exp            go to state 29
+    termino        go to state 30
+    factor         go to state 31
+    cte            go to state 32
+    concatenacion  go to state 33
+    cadena         go to state 34
+    IID            go to state 35
+
+
+State 59
+
+   15 cond: exp_logica OR . exp_logica
+
+    PARENT_ABRE       shift, and go to state 23
+    CONSTANTE_STRING  shift, and go to state 24
+    CONSTANTE_INT     shift, and go to state 25
+    CONSTANTE_REAL    shift, and go to state 26
+    ID                shift, and go to state 9
+
+    exp_logica     go to state 91
+    exp            go to state 29
+    termino        go to state 30
+    factor         go to state 31
+    cte            go to state 32
+    concatenacion  go to state 33
+    cadena         go to state 34
+    IID            go to state 35
+
+
+State 60
+
+   23 comp: MAYOR .
+
+    $default  reduce using rule 23 (comp)
+
+
+State 61
+
+   19 comp: MAYOR_IGUAL .
+
+    $default  reduce using rule 19 (comp)
+
+
+State 62
+
+   24 comp: MENOR .
+
+    $default  reduce using rule 24 (comp)
+
+
+State 63
+
+   20 comp: MENOR_IGUAL .
+
+    $default  reduce using rule 20 (comp)
+
+
+State 64
+
+   22 comp: IGUAL .
+
+    $default  reduce using rule 22 (comp)
+
+
+State 65
+
+   21 comp: DISTINTO .
+
+    $default  reduce using rule 21 (comp)
+
+
+State 66
+
+   25 exp: exp MAS . termino
+
+    PARENT_ABRE       shift, and go to state 23
+    CONSTANTE_STRING  shift, and go to state 92
+    CONSTANTE_INT     shift, and go to state 25
+    CONSTANTE_REAL    shift, and go to state 26
+    ID                shift, and go to state 9
+
+    termino  go to state 93
+    factor   go to state 31
+    cte      go to state 32
+    IID      go to state 94
+
+
+State 67
+
+   26 exp: exp MENOS . termino
+
+    PARENT_ABRE       shift, and go to state 23
+    CONSTANTE_STRING  shift, and go to state 92
+    CONSTANTE_INT     shift, and go to state 25
+    CONSTANTE_REAL    shift, and go to state 26
+    ID                shift, and go to state 9
+
+    termino  go to state 95
+    factor   go to state 31
+    cte      go to state 32
+    IID      go to state 94
+
+
+State 68
+
+   18 exp_logica: exp comp . exp
+
+    PARENT_ABRE       shift, and go to state 23
+    CONSTANTE_STRING  shift, and go to state 24
+    CONSTANTE_INT     shift, and go to state 25
+    CONSTANTE_REAL    shift, and go to state 26
+    ID                shift, and go to state 9
+
+    exp            go to state 96
+    termino        go to state 30
+    factor         go to state 31
+    cte            go to state 32
+    concatenacion  go to state 33
+    cadena         go to state 34
+    IID            go to state 35
+
+
+State 69
+
+   29 termino: termino MUL . factor
+
+    PARENT_ABRE       shift, and go to state 23
+    CONSTANTE_STRING  shift, and go to state 92
+    CONSTANTE_INT     shift, and go to state 25
+    CONSTANTE_REAL    shift, and go to state 26
+    ID                shift, and go to state 9
+
+    factor  go to state 97
+    cte     go to state 32
+    IID     go to state 94
+
+
+State 70
+
+   30 termino: termino DIV . factor
+
+    PARENT_ABRE       shift, and go to state 23
+    CONSTANTE_STRING  shift, and go to state 92
+    CONSTANTE_INT     shift, and go to state 25
+    CONSTANTE_REAL    shift, and go to state 26
+    ID                shift, and go to state 9
+
+    factor  go to state 98
+    cte     go to state 32
+    IID     go to state 94
+
+
+State 71
+
+   61 concatenacion: concatenacion CONCATENACION . IID
+   62              | concatenacion CONCATENACION . cadena
+
+    CONSTANTE_STRING  shift, and go to state 36
+    ID                shift, and go to state 9
+
+    cadena  go to state 99
+    IID     go to state 100
+
+
+State 72
+
+   57 concatenacion: cadena CONCATENACION . cadena
+   59              | cadena CONCATENACION . IID
+
+    CONSTANTE_STRING  shift, and go to state 36
+    ID                shift, and go to state 9
+
+    cadena  go to state 101
+    IID     go to state 102
+
+
+State 73
+
+   58 concatenacion: IID CONCATENACION . cadena
+   60              | IID CONCATENACION . IID
+
+    CONSTANTE_STRING  shift, and go to state 36
+    ID                shift, and go to state 9
+
+    cadena  go to state 103
+    IID     go to state 104
+
+
+State 74
+
+   39 decisionPrimera: IF cond THEN .
+
+    $default  reduce using rule 39 (decisionPrimera)
+
+
+State 75
+
+   48 tipos_datos_varios: CORCHETE_ABRE tipos_datos . CORCHETE_CIERRA
+
+    CORCHETE_CIERRA  shift, and go to state 105
+
+
+State 76
+
+   50 tipos_datos: tipo .
+   51            | tipo . COMA tipos_datos
+
+    COMA  shift, and go to state 106
+
+    $default  reduce using rule 50 (tipos_datos)
+
+
+State 77
+
+   42 declaracion: VAR lista_declaraciones ENDVAR .
+
+    $default  reduce using rule 42 (declaracion)
+
+
+State 78
+
+   46 lista_declaraciones: lista_declaraciones declaracion_especial .
+
+    $default  reduce using rule 46 (lista_declaraciones)
+
+
+State 79
+
+   44 lista_declaraciones: lista_declaraciones tipo . IID
+
+    ID  shift, and go to state 9
+
+    IID  go to state 107
+
+
+State 80
+
+   47 declaracion_especial: tipos_datos_varios DOS_PUNTOS . ids_datos_varios
+
+    CORCHETE_ABRE  shift, and go to state 108
+
+    ids_datos_varios  go to state 109
+
+
+State 81
+
+   43 lista_declaraciones: tipo IID .
+
+    $default  reduce using rule 43 (lista_declaraciones)
+
+
+State 82
+
+    3 inicio: INICIO_PROG lista_sentencia FIN_PROG END_OF_FILE .
+
+    $default  reduce using rule 3 (inicio)
+
+
+State 83
+
+   40 decision: decisionPrimera lista_sentencia ENDIF .
+
+    $default  reduce using rule 40 (decision)
+
+
+State 84
+
+   41 decision: decisionPrimera lista_sentencia ELSE . lista_sentencia ENDIF
+
+    WHILE  shift, and go to state 4
+    WRITE  shift, and go to state 5
+    READ   shift, and go to state 6
+    IF     shift, and go to state 7
+    ID     shift, and go to state 9
+
+    lista_sentencia  go to state 110
+    sentencia        go to state 11
+    iteracion        go to state 12
+    asignacion       go to state 13
+    impresion        go to state 14
+    ingreso          go to state 15
+    decisionPrimera  go to state 16
+    decision         go to state 17
+    IID              go to state 19
+
+
+State 85
+
+    2 inicio: INICIO_PROG declaracion FIN_PROG END_OF_FILE .
+
+    $default  reduce using rule 2 (inicio)
+
+
+State 86
+
+    1 inicio: INICIO_PROG declaracion lista_sentencia FIN_PROG . END_OF_FILE
+
+    END_OF_FILE  shift, and go to state 111
+
+
+State 87
+
+   25 exp: exp . MAS termino
+   26    | exp . MENOS termino
+   35 asignacion: IID ASIGNACION exp .
+
+    MAS    shift, and go to state 66
+    MENOS  shift, and go to state 67
+
+    $default  reduce using rule 35 (asignacion)
+
+
+State 88
+
+   34 factor: PARENT_ABRE exp PARENT_CIERRA .
+
+    $default  reduce using rule 34 (factor)
+
+
+State 89
+
+   13 iteracion: WHILE cond DO $@1 . lista_sentencia ENDWHILE
+
+    WHILE  shift, and go to state 4
+    WRITE  shift, and go to state 5
+    READ   shift, and go to state 6
+    IF     shift, and go to state 7
+    ID     shift, and go to state 9
+
+    lista_sentencia  go to state 112
+    sentencia        go to state 11
+    iteracion        go to state 12
+    asignacion       go to state 13
+    impresion        go to state 14
+    ingreso          go to state 15
+    decisionPrimera  go to state 16
+    decision         go to state 17
+    IID              go to state 19
+
+
+State 90
+
+   14 cond: exp_logica AND exp_logica .
+
+    $default  reduce using rule 14 (cond)
+
+
+State 91
+
+   15 cond: exp_logica OR exp_logica .
+
+    $default  reduce using rule 15 (cond)
+
+
+State 92
+
+   56 cte: CONSTANTE_STRING .
+
+    $default  reduce using rule 56 (cte)
+
+
+State 93
+
+   25 exp: exp MAS termino .
+   29 termino: termino . MUL factor
+   30        | termino . DIV factor
+
+    MUL  shift, and go to state 69
+    DIV  shift, and go to state 70
+
+    $default  reduce using rule 25 (exp)
+
+
+State 94
+
+   32 factor: IID .
+
+    $default  reduce using rule 32 (factor)
+
+
+State 95
+
+   26 exp: exp MENOS termino .
+   29 termino: termino . MUL factor
+   30        | termino . DIV factor
+
+    MUL  shift, and go to state 69
+    DIV  shift, and go to state 70
+
+    $default  reduce using rule 26 (exp)
+
+
+State 96
+
+   18 exp_logica: exp comp exp .
+   25 exp: exp . MAS termino
+   26    | exp . MENOS termino
+
+    MAS    shift, and go to state 66
+    MENOS  shift, and go to state 67
+
+    $default  reduce using rule 18 (exp_logica)
+
+
+State 97
+
+   29 termino: termino MUL factor .
+
+    $default  reduce using rule 29 (termino)
+
+
+State 98
+
+   30 termino: termino DIV factor .
+
+    $default  reduce using rule 30 (termino)
+
+
+State 99
+
+   62 concatenacion: concatenacion CONCATENACION cadena .
+
+    $default  reduce using rule 62 (concatenacion)
+
+
+State 100
+
+   61 concatenacion: concatenacion CONCATENACION IID .
+
+    $default  reduce using rule 61 (concatenacion)
+
+
+State 101
+
+   57 concatenacion: cadena CONCATENACION cadena .
+
+    $default  reduce using rule 57 (concatenacion)
+
+
+State 102
+
+   59 concatenacion: cadena CONCATENACION IID .
+
+    $default  reduce using rule 59 (concatenacion)
+
+
+State 103
+
+   58 concatenacion: IID CONCATENACION cadena .
+
+    $default  reduce using rule 58 (concatenacion)
+
+
+State 104
+
+   60 concatenacion: IID CONCATENACION IID .
+
+    $default  reduce using rule 60 (concatenacion)
+
+
+State 105
+
+   48 tipos_datos_varios: CORCHETE_ABRE tipos_datos CORCHETE_CIERRA .
+
+    $default  reduce using rule 48 (tipos_datos_varios)
+
+
+State 106
+
+   51 tipos_datos: tipo COMA . tipos_datos
+
+    REAL    shift, and go to state 41
+    INT     shift, and go to state 42
+    STRING  shift, and go to state 43
+
+    tipos_datos  go to state 113
+    tipo         go to state 76
+
+
+State 107
+
+   44 lista_declaraciones: lista_declaraciones tipo IID .
+
+    $default  reduce using rule 44 (lista_declaraciones)
+
+
+State 108
+
+   49 ids_datos_varios: CORCHETE_ABRE . ids_datos CORCHETE_CIERRA
+
+    ID  shift, and go to state 9
+
+    ids_datos  go to state 114
+    IID        go to state 115
+
+
+State 109
+
+   47 declaracion_especial: tipos_datos_varios DOS_PUNTOS ids_datos_varios .
+
+    $default  reduce using rule 47 (declaracion_especial)
+
+
+State 110
+
+    6 lista_sentencia: lista_sentencia . sentencia
+   41 decision: decisionPrimera lista_sentencia ELSE lista_sentencia . ENDIF
+
+    WHILE  shift, and go to state 4
+    WRITE  shift, and go to state 5
+    READ   shift, and go to state 6
+    IF     shift, and go to state 7
+    ENDIF  shift, and go to state 116
+    ID     shift, and go to state 9
+
+    sentencia        go to state 50
+    iteracion        go to state 12
+    asignacion       go to state 13
+    impresion        go to state 14
+    ingreso          go to state 15
+    decisionPrimera  go to state 16
+    decision         go to state 17
+    IID              go to state 19
+
+
+State 111
+
+    1 inicio: INICIO_PROG declaracion lista_sentencia FIN_PROG END_OF_FILE .
+
+    $default  reduce using rule 1 (inicio)
+
+
+State 112
+
+    6 lista_sentencia: lista_sentencia . sentencia
+   13 iteracion: WHILE cond DO $@1 lista_sentencia . ENDWHILE
+
+    WHILE     shift, and go to state 4
+    ENDWHILE  shift, and go to state 117
+    WRITE     shift, and go to state 5
+    READ      shift, and go to state 6
+    IF        shift, and go to state 7
+    ID        shift, and go to state 9
+
+    sentencia        go to state 50
+    iteracion        go to state 12
+    asignacion       go to state 13
+    impresion        go to state 14
+    ingreso          go to state 15
+    decisionPrimera  go to state 16
+    decision         go to state 17
+    IID              go to state 19
+
+
+State 113
+
+   51 tipos_datos: tipo COMA tipos_datos .
+
+    $default  reduce using rule 51 (tipos_datos)
+
+
+State 114
+
+   49 ids_datos_varios: CORCHETE_ABRE ids_datos . CORCHETE_CIERRA
+
+    CORCHETE_CIERRA  shift, and go to state 118
+
+
+State 115
+
+   52 ids_datos: IID .
+   53          | IID . COMA ids_datos
+
+    COMA  shift, and go to state 119
+
+    $default  reduce using rule 52 (ids_datos)
+
+
+State 116
+
+   41 decision: decisionPrimera lista_sentencia ELSE lista_sentencia ENDIF .
+
+    $default  reduce using rule 41 (decision)
+
+
+State 117
+
+   13 iteracion: WHILE cond DO $@1 lista_sentencia ENDWHILE .
+
+    $default  reduce using rule 13 (iteracion)
+
+
+State 118
+
+   49 ids_datos_varios: CORCHETE_ABRE ids_datos CORCHETE_CIERRA .
+
+    $default  reduce using rule 49 (ids_datos_varios)
+
+
+State 119
+
+   53 ids_datos: IID COMA . ids_datos
+
+    ID  shift, and go to state 9
+
+    ids_datos  go to state 120
+    IID        go to state 115
+
+
+State 120
+
+   53 ids_datos: IID COMA ids_datos .
+
+    $default  reduce using rule 53 (ids_datos)

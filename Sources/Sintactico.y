@@ -1,13 +1,15 @@
 %{
 int yylex(void);
 void yyerror(const char *);
-#include "Singleton.hpp"
+
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include "TablaSimbolos.hpp"
 using namespace std;
 extern FILE *yyin;
 extern int lineCounter;
+extern char *yytext;
 bool compileSucess=false;
 #define PRINT(x)			cout<<"Sintactico: "<<x<<endl;
 %}
@@ -70,10 +72,10 @@ bool compileSucess=false;
 %%
 
 
-inicio: INICIO_PROG declaracion lista_sentencia FIN_PROG END_OF_FILE	{PRINT("Inicio de programa completo"); compileSucess=true;};
-		| INICIO_PROG declaracion FIN_PROG END_OF_FILE					{PRINT("Inicio de Programa solo declaracion");compileSucess=true;};
-		| INICIO_PROG lista_sentencia FIN_PROG	END_OF_FILE 			{PRINT("Inicio de Programa solo sentencias");compileSucess=true;};
-		| INICIO_PROG FIN_PROG END_OF_FILE								{PRINT("Inicio de programa vacio");compileSucess=true;};
+inicio: INICIO_PROG declaracion lista_sentencia FIN_PROG END_OF_FILE	{PRINT("Inicio de programa completo"); compileSucess=true; TS_INICIO_DECLARACIONES;};
+		| INICIO_PROG declaracion FIN_PROG END_OF_FILE					{PRINT("Inicio de Programa solo declaracion");compileSucess=true; TS_INICIO_DECLARACIONES;};
+		| INICIO_PROG lista_sentencia FIN_PROG	END_OF_FILE 			{PRINT("Inicio de Programa solo sentencias");compileSucess=true; TS_FIN_DECLARACIONES;};
+		| INICIO_PROG FIN_PROG END_OF_FILE								{PRINT("Inicio de programa vacio");compileSucess=true;TS_FIN_DECLARACIONES;};
 
 															
 
@@ -133,11 +135,11 @@ decision : decisionPrimera lista_sentencia ENDIF 						{ PRINT("if sin else body
 
 
 
-declaracion: VAR lista_declaraciones ENDVAR 							{PRINT("Declaraciones de variables");};
+declaracion: VAR lista_declaraciones ENDVAR 							{PRINT("Declaraciones de variables"); TS_FIN_DECLARACIONES;};
 
 lista_declaraciones: tipo IID 			  								{PRINT("Declaracion sub i");};
-					| lista_declaraciones tipo IID				 		{PRINT("Declaracion de variables");};
-					| declaracion_especial								{PRINT("Declaracion de variable especial");}
+					| lista_declaraciones tipo IID				 		{PRINT("Declaracion de variabl"); TS_FIN_DECLARACION_ACTUAL;};
+					| declaracion_especial								{PRINT("Declaracion de variable especial"); TS_FIN_DECLARACION_ACTUAL;}
 					| lista_declaraciones declaracion_especial			{PRINT("Declaracion especial sub i");}
 
 declaracion_especial:	tipos_datos_varios DOS_PUNTOS ids_datos_varios	{PRINT("Declaracion especial tipo dos puntos ids");}
@@ -166,20 +168,20 @@ concatenacion:  cadena CONCATENACION cadena 							{PRINT("Concatena Cadena ");}
 			   | concatenacion  CONCATENACION IID
 			   |  concatenacion  CONCATENACION cadena
     
-tipo :  REAL 															{PRINT("tipo real");};
-	| INT 																{PRINT("tipo entero");};
-	| STRING 															{PRINT("tipo string");};
+tipo :  REAL 															{PRINT("tipo real"); TS_ADD_TIPO(yytext);};
+	| INT 																{PRINT("tipo entero"); TS_ADD_TIPO(yytext);};
+	| STRING 															{PRINT("tipo string"); TS_ADD_TIPO(yytext);};
 
 cadena : CONSTANTE_STRING												{PRINT("Constante string");};
 
-IID : ID 																{PRINT("Id");};
+IID : ID 																{PRINT("Id"); TS_ADD_ID(yytext,lineCounter);};
 
 %%
 
 
 int main(int argc,char **argv)
 {
-	Singleton::getInstance()->mostrarMensage();
+	
 	if(argc<2)
 	{
 		PRINT("Ingrese el archivo a compilar");

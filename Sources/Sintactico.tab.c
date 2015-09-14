@@ -66,17 +66,19 @@
 
 int yylex(void);
 void yyerror(const char *);
-#include "Singleton.hpp"
+
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include "TablaSimbolos.hpp"
 using namespace std;
 extern FILE *yyin;
 extern int lineCounter;
+extern char *yytext;
 bool compileSucess=false;
 #define PRINT(x)			cout<<"Sintactico: "<<x<<endl;
 
-#line 80 "Sintactico.tab.c" /* yacc.c:339  */
+#line 82 "Sintactico.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -179,7 +181,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 183 "Sintactico.tab.c" /* yacc.c:358  */
+#line 185 "Sintactico.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -481,13 +483,13 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    73,    73,    74,    75,    76,    81,    82,    84,    85,
-      86,    87,    88,    91,    91,    94,    95,    96,    97,    99,
-     101,   102,   103,   104,   105,   106,   108,   109,   110,   111,
-     113,   114,   115,   117,   118,   119,   121,   123,   124,   127,
-     129,   131,   132,   136,   138,   139,   140,   141,   143,   145,
-     147,   149,   150,   152,   153,   157,   158,   159,   162,   163,
-     164,   165,   166,   167,   169,   170,   171,   173,   175
+       0,    75,    75,    76,    77,    78,    83,    84,    86,    87,
+      88,    89,    90,    93,    93,    96,    97,    98,    99,   101,
+     103,   104,   105,   106,   107,   108,   110,   111,   112,   113,
+     115,   116,   117,   119,   120,   121,   123,   125,   126,   129,
+     131,   133,   134,   138,   140,   141,   142,   143,   145,   147,
+     149,   151,   152,   154,   155,   159,   160,   161,   164,   165,
+     166,   167,   168,   169,   171,   172,   173,   175,   177
 };
 #endif
 
@@ -1355,397 +1357,397 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 73 "Sources/Sintactico.y" /* yacc.c:1646  */
-    {PRINT("Inicio de programa completo"); compileSucess=true;}
-#line 1361 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 75 "Sources/Sintactico.y" /* yacc.c:1646  */
+    {PRINT("Inicio de programa completo"); compileSucess=true; TS_INICIO_DECLARACIONES;}
+#line 1363 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 74 "Sources/Sintactico.y" /* yacc.c:1646  */
-    {PRINT("Inicio de Programa solo declaracion");compileSucess=true;}
-#line 1367 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 76 "Sources/Sintactico.y" /* yacc.c:1646  */
+    {PRINT("Inicio de Programa solo declaracion");compileSucess=true; TS_INICIO_DECLARACIONES;}
+#line 1369 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 75 "Sources/Sintactico.y" /* yacc.c:1646  */
-    {PRINT("Inicio de Programa solo sentencias");compileSucess=true;}
-#line 1373 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 77 "Sources/Sintactico.y" /* yacc.c:1646  */
+    {PRINT("Inicio de Programa solo sentencias");compileSucess=true; TS_FIN_DECLARACIONES;}
+#line 1375 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 76 "Sources/Sintactico.y" /* yacc.c:1646  */
-    {PRINT("Inicio de programa vacio");compileSucess=true;}
-#line 1379 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 78 "Sources/Sintactico.y" /* yacc.c:1646  */
+    {PRINT("Inicio de programa vacio");compileSucess=true;TS_FIN_DECLARACIONES;}
+#line 1381 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 81 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 83 "Sources/Sintactico.y" /* yacc.c:1646  */
     { PRINT("Sentencia"); }
-#line 1385 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1387 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 82 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 84 "Sources/Sintactico.y" /* yacc.c:1646  */
     { PRINT("Lista de Sentencias"); }
-#line 1391 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1393 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 84 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 86 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Loop");}
-#line 1397 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1399 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 85 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 87 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Condicion");}
-#line 1403 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1405 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 86 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 88 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Igualacion");}
-#line 1409 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1411 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 87 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 89 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Standard output");}
-#line 1415 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1417 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 88 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 90 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Standard input");}
-#line 1421 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1423 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 91 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 93 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("While");}
-#line 1427 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1429 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 92 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 94 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("While step");}
-#line 1433 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1435 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 94 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 96 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Expresion logica and");}
-#line 1439 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1441 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 95 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 97 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Expresion logica or");}
-#line 1445 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1447 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 96 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 98 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Expresion logica");}
-#line 1451 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1453 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 97 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 99 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Expresion logica NOT");}
-#line 1457 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1459 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 99 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 101 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Expresion logica");}
-#line 1463 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1465 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 101 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 103 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Comparacion mayor igual");}
-#line 1469 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1471 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 102 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 104 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Comparacion menor igual");}
-#line 1475 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1477 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 103 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 105 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Comparacion distinto");}
-#line 1481 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1483 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 104 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 106 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Comparacion igual");}
-#line 1487 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1489 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 105 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 107 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Comparacion mayor");}
-#line 1493 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1495 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 106 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 108 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Comparacion menor");}
-#line 1499 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1501 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 108 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 110 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Expresion suma termino");}
-#line 1505 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1507 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 109 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 111 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Expresion menos termino");}
-#line 1511 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1513 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 110 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 112 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Expresion termino");}
-#line 1517 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1519 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 111 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 113 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Expresion concatenacion");}
-#line 1523 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1525 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 113 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 115 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Termino por factor");}
-#line 1529 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1531 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 114 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 116 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Termino div factor");}
-#line 1535 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1537 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 115 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 117 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Termino factor");}
-#line 1541 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1543 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 117 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 119 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Identificador");}
-#line 1547 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1549 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 118 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 120 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Constante");}
-#line 1553 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1555 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 119 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 121 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Expresion entre parentesis");}
-#line 1559 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1561 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 121 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 123 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Asignacion");}
-#line 1565 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1567 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 123 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 125 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Standard output Identificador");}
-#line 1571 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1573 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 124 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 126 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Standard output constante");}
-#line 1577 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1579 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 127 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 129 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Standard input");}
-#line 1583 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1585 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 129 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 131 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("if sin else aux")}
-#line 1589 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1591 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 131 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 133 "Sources/Sintactico.y" /* yacc.c:1646  */
     { PRINT("if sin else body");}
-#line 1595 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1597 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 132 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 134 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("if con else\n");}
-#line 1601 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1603 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 136 "Sources/Sintactico.y" /* yacc.c:1646  */
-    {PRINT("Declaraciones de variables");}
-#line 1607 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 138 "Sources/Sintactico.y" /* yacc.c:1646  */
+    {PRINT("Declaraciones de variables"); TS_FIN_DECLARACIONES;}
+#line 1609 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 138 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 140 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Declaracion sub i");}
-#line 1613 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1615 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 139 "Sources/Sintactico.y" /* yacc.c:1646  */
-    {PRINT("Declaracion de variables");}
-#line 1619 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 141 "Sources/Sintactico.y" /* yacc.c:1646  */
+    {PRINT("Declaracion de variabl"); TS_FIN_DECLARACION_ACTUAL;}
+#line 1621 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 140 "Sources/Sintactico.y" /* yacc.c:1646  */
-    {PRINT("Declaracion de variable especial");}
-#line 1625 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 142 "Sources/Sintactico.y" /* yacc.c:1646  */
+    {PRINT("Declaracion de variable especial"); TS_FIN_DECLARACION_ACTUAL;}
+#line 1627 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 141 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 143 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Declaracion especial sub i");}
-#line 1631 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1633 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 143 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 145 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Declaracion especial tipo dos puntos ids");}
-#line 1637 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1639 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 145 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 147 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Declaracion especial corchete tipos corchete");}
-#line 1643 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1645 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 147 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 149 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Declaracion especial corchete ids corchete");}
-#line 1649 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1651 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 149 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 151 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Declaracion especial tipo");}
-#line 1655 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1657 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 150 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 152 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Declaracion especial tipo coma");}
-#line 1661 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1663 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 53:
-#line 152 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 154 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Declaracion especial id");}
-#line 1667 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1669 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 54:
-#line 153 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 155 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Declaracion especial id coma");}
-#line 1673 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1675 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 157 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 159 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Constante real");}
-#line 1679 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1681 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 158 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 160 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Constante entera");}
-#line 1685 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1687 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 159 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 161 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Constante string");}
-#line 1691 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1693 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 162 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 164 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Concatena Cadena ");}
-#line 1697 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1699 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 163 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 165 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Concatena Identificador Cadena");}
-#line 1703 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1705 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 164 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 166 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Concatena Cadena Identificador");}
-#line 1709 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1711 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 165 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 167 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Concatena Identificador Identificador\n");}
-#line 1715 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1717 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 169 "Sources/Sintactico.y" /* yacc.c:1646  */
-    {PRINT("tipo real");}
-#line 1721 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 171 "Sources/Sintactico.y" /* yacc.c:1646  */
+    {PRINT("tipo real"); TS_ADD_TIPO(yytext);}
+#line 1723 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 170 "Sources/Sintactico.y" /* yacc.c:1646  */
-    {PRINT("tipo entero");}
-#line 1727 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 172 "Sources/Sintactico.y" /* yacc.c:1646  */
+    {PRINT("tipo entero"); TS_ADD_TIPO(yytext);}
+#line 1729 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 171 "Sources/Sintactico.y" /* yacc.c:1646  */
-    {PRINT("tipo string");}
-#line 1733 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 173 "Sources/Sintactico.y" /* yacc.c:1646  */
+    {PRINT("tipo string"); TS_ADD_TIPO(yytext);}
+#line 1735 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 173 "Sources/Sintactico.y" /* yacc.c:1646  */
+#line 175 "Sources/Sintactico.y" /* yacc.c:1646  */
     {PRINT("Constante string");}
-#line 1739 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1741 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 175 "Sources/Sintactico.y" /* yacc.c:1646  */
-    {PRINT("Id");}
-#line 1745 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 177 "Sources/Sintactico.y" /* yacc.c:1646  */
+    {PRINT("Id"); TS_ADD_ID(yytext,lineCounter);}
+#line 1747 "Sintactico.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1749 "Sintactico.tab.c" /* yacc.c:1646  */
+#line 1751 "Sintactico.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1973,13 +1975,13 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 177 "Sources/Sintactico.y" /* yacc.c:1906  */
+#line 179 "Sources/Sintactico.y" /* yacc.c:1906  */
 
 
 
 int main(int argc,char **argv)
 {
-	Singleton::getInstance()->mostrarMensage();
+	
 	if(argc<2)
 	{
 		PRINT("Ingrese el archivo a compilar");

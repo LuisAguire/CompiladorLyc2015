@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <iostream>
 #include "Sintactico.tab.h"
-#include "Singleton.hpp"
 using namespace std;
 int lineCounter=1;
 #define PRINT(x)		

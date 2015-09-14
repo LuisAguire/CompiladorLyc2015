@@ -5,10 +5,10 @@ ALL_OBJECTS=Singleton.o
 OBJECTS=Singleton.o
 INCLUDE=-ISources -ISources/Componentes -I.
 all: create flex bison move  
-	g++ $(INCLUDE) -o $@ $(SOURCE_DIR)/Sintactico.tab.c $(SOURCE_DIR)/lex.yy.c $(SOURCE_DIR)/Componentes/Singleton.cpp -lfl -o $(OUTPUT_DIR)/$(TARGET)
+	g++ $(INCLUDE) -o $@ $(SOURCE_DIR)/Sintactico.tab.c $(SOURCE_DIR)/lex.yy.c $(SOURCE_DIR)/Componentes/TablaSimbolos.cpp -lfl -o $(OUTPUT_DIR)/$(TARGET)
 
 Singleton.o: Sources/Componentes/Singleton.cpp
-	g++ Sources/Componentes/Singleton.cpp -o Debug/Singleton.o
+	g++ Sources/Componentes/TablaSimbolos.cpp -o $(OUTPUT_DIR)/TablaSimbolos.o
 flex:
 	flex $(SOURCE_DIR)/Lexico.l 
 	

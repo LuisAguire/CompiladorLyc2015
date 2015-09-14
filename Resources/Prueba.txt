@@ -1,7 +1,9 @@
 INICIOPROG
 	VAR
 		[Integer,Integer,String]:[a,asd]
-		[Integer,Integer]:[a,asd,a]
+		[Integer,Integer]:[b,as,c]
+		Integer d
+		Integer e
 	ENDVAR
 	a:=2+3+5
 	c:=a++b++c++"324"++a
