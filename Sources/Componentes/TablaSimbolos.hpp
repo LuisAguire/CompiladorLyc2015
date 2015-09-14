@@ -43,6 +43,7 @@ class TablaSimbolos
 		virtual ~TablaSimbolos();
 	protected:
 		bool isIdPresent(string,VariablesDefinidas *data=0);
+		void generarFile();
 
 };
 

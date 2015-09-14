@@ -8,6 +8,7 @@
 #include "TablaSimbolos.hpp"
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
 
 TablaSimbolos* TablaSimbolos::instance=0;
 
@@ -30,7 +31,7 @@ void TablaSimbolos::inicioDeDeclaraciones()
 void TablaSimbolos::finDeDeclaraciones()
 {
 	currentState=EstadoValidaIds;
-
+	generarFile();
 }
 void TablaSimbolos::addTipo(string tipo)
 {
@@ -103,7 +104,24 @@ bool TablaSimbolos::isIdPresent(string name,VariablesDefinidas *data)
 	}
 	return true;
 }
-
+void TablaSimbolos::generarFile()
+{
+	map<string,VariablesDefinidas>::iterator it=variables.begin();
+	string name="tablaSibolo.txt";
+	FILE *file=fopen(name.c_str(),"w");
+	if(!file)
+	{
+		cout<<"*** Error abriendo archivo "<<name<<", no se puede generar la tabla de simbolso"<<endl;
+		return;
+	}
+	fprintf(file,"tipo:id:lineaDeclaraion\n");
+	while(it!=variables.end())
+	{
+		fprintf(file,"%s:%s:%d\n",it->second.tipo.c_str(),it->first.c_str(),it->second.lineNro);
+		it++;
+	}
+	fclose(file);
+}
 TablaSimbolos::~TablaSimbolos()
 {
 }

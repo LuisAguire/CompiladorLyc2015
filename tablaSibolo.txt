@@ -1,0 +1,7 @@
+tipo:id:lineaDeclaraion
+Integer:a:3
+Integer:as:5
+Integer:asd:3
+Integer:b:5
+Integer:c:5
+Integer:e:6
