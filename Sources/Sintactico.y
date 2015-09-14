@@ -89,7 +89,13 @@ sentencia : iteracion 													{PRINT("Loop");};
 
 
 iteracion : WHILE cond DO 												{PRINT("While");} 
-			lista_sentencia ENDWHILE 									{PRINT("While step");};
+	    lista_sentencia ENDWHILE 											{PRINT("While step");};
+	  | WHILE IID IN 												{PRINT("WhileIN cabecera");}
+	    CORCHETE_ABRE lista_expresiones CORCHETE_CIERRA								{PRINT("WhileIN expresiones");}
+	    DO lista_sentencia ENDWHILE											{PRINT("WhileIN sentencias");};
+
+lista_expresiones : exp													{PRINT("WhileIN expresion");}; 
+		  | lista_expresiones COMA exp										{PRINT("WhileIN expresiones");
 
 cond : exp_logica AND exp_logica				 						{PRINT("Expresion logica and");};
      | exp_logica OR exp_logica 										{PRINT("Expresion logica or");};
