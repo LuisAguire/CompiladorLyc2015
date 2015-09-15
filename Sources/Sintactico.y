@@ -1,11 +1,10 @@
 %{
 int yylex(void);
 void yyerror(const char *);
-
+#include "TablaSimbolos.hpp"
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include "TablaSimbolos.hpp"
 using namespace std;
 extern FILE *yyin;
 extern int lineCounter;
@@ -92,6 +91,13 @@ sentencia : iteracion 													{PRINT("Loop");};
 
 iteracion : WHILE cond DO 												{PRINT("While");} 
 			lista_sentencia ENDWHILE 									{PRINT("While step");};
+		  | WHILE IID IN 												{PRINT("WhileIN cabecera");}
+	    	CORCHETE_ABRE lista_expresiones CORCHETE_CIERRA				{PRINT("WhileIN expresiones");}
+	    	DO lista_sentencia ENDWHILE									{PRINT("WhileIN sentencias");};
+			
+
+lista_expresiones : exp													{PRINT("WhileIN expresion");}; 
+		  | lista_expresiones COMA exp									{PRINT("WhileIN expresiones");};
 
 cond : exp_logica AND exp_logica				 						{PRINT("Expresion logica and");};
      | exp_logica OR exp_logica 										{PRINT("Expresion logica or");};
@@ -142,7 +148,7 @@ lista_declaraciones: tipo IID 			  								{PRINT("Declaracion sub i");};
 					| declaracion_especial								{PRINT("Declaracion de variable especial"); TS_FIN_DECLARACION_ACTUAL;}
 					| lista_declaraciones declaracion_especial			{PRINT("Declaracion especial sub i");}
 
-declaracion_especial:	tipos_datos_varios DOS_PUNTOS ids_datos_varios	{PRINT("Declaracion especial tipo dos puntos ids");}
+declaracion_especial:	tipos_datos_varios DOS_PUNTOS ids_datos_varios	{PRINT("Declaracion especial tipo dos puntos ids"); TS_FIN_DECLARACION_ACTUAL;}
 
 tipos_datos_varios: CORCHETE_ABRE tipos_datos CORCHETE_CIERRA			{PRINT("Declaracion especial corchete tipos corchete");}
 

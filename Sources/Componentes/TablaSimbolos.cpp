@@ -9,7 +9,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-
+#define PRINT(x)
 TablaSimbolos* TablaSimbolos::instance=0;
 
 TablaSimbolos::TablaSimbolos()
@@ -45,14 +45,16 @@ void TablaSimbolos::addTipo(string tipo)
 
 void TablaSimbolos::addId(string name,int lineNro)
 {
+
 	if( currentState==EstadoValidaIds)
 	{
+		PRINT("busca id:"<<name<<".");
 		if(isIdPresent(name))
 			return;
 		cout<<"*** Error, undefined reference to "<<name<<endl;
 		exit(4);
 	}
-
+	PRINT("agregan id:"<<name<<".");
 	VariablesDefinidas varData;
 	if(isIdPresent(name,&varData))
 	{
@@ -65,12 +67,15 @@ void TablaSimbolos::addId(string name,int lineNro)
 
 void TablaSimbolos::finDeclaracionActual()
 {
+	PRINT("Fin de declaracion actual");
 	int max=(currentTipos.size()>currentIds.size()?currentIds.size():currentTipos.size());
+	PRINT("Maximo: "<<max);
 	for( int x=0;x<max;x++)
 	{
 		VariablesDefinidas aux;
 		aux.tipo=currentTipos[x];
 		aux.lineNro=lastLine;
+		PRINT("Agrega id: "<<currentIds[x]<<" tipo "<<aux.tipo);
 		variables.insert(pair<string,VariablesDefinidas>(currentIds[x],aux));
 	}
 	currentIds.clear();

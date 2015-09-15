@@ -1,11 +1,23 @@
 INICIOPROG
 	VAR
+		Integer otra
 		[Integer,Integer,String]:[a,asd]
-		[Integer,Integer]:[b,as,c]
+		[Integer,Integer,String]:[j,k,l]
 		Integer d
+		[Integer,Integer,String]:[b,as,c]
 		Integer e
 	ENDVAR
+	WHILE d IN [ a+3,a+65,as,a*5,(3+5)*c --2,a- 5] DO
+		asd:=5
+	ENDWHILE
 	a:=2+3+5
+	otra:=4
+	a:=otra
+	asd:=j
+	k:=l
+	d:=b
+	as:=c
+	e:=5
 	c:=a++b++c++"324"++a
 	-/a=5-/
 FINPROG
