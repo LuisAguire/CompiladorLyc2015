@@ -1,0 +1,24 @@
+TARGET=Compilador
+OUTPUT_DIR=
+SOURCE_DIR=Sources
+ALL_OBJECTS=Singleton.o
+OBJECTS=Singleton.o
+INCLUDE=-ISources -ISources/Componentes -I.
+all: flex bison move  
+	g++ $(INCLUDE) -o $@ $(SOURCE_DIR)/Sintactico.tab.c $(SOURCE_DIR)/lex.yy.c $(SOURCE_DIR)/Componentes/TablaSimbolos.cpp  -o $(OUTPUT_DIR)$(TARGET)
+
+Singleton.o: Sources/Componentes/Singleton.cpp
+	g++ Sources/Componentes/TablaSimbolos.cpp -o $(OUTPUT_DIR)/TablaSimbolos.o
+flex:
+	flex $(SOURCE_DIR)/Lexico.l 
+	
+bison:
+	bison -d -v $(SOURCE_DIR)/Sintactico.y 
+
+move:
+	move /y "lex.yy.c" "$(SOURCE_DIR)"
+	move /y "Sintactico.tab.c" "$(SOURCE_DIR)"
+	move /y "Sintactico.tab.h" "$(SOURCE_DIR)"
+
+create:
+	mkdir -p "$(OUTPUT_DIR)"	
