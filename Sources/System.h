@@ -1,6 +1,6 @@
 #define APP_NAME				"Compiler"
 #define MAYOR_VERSION			"1"
-#define MINOR_VERSION			"6"
+#define MINOR_VERSION			"5"
 #define LANGUAGE				"L.M.L"
 #define COMPILER_VERSION		MAYOR_VERSION"."MINOR_VERSION
 #define DEVELOPED_BY			"GRUPO 12:"
