@@ -7,7 +7,7 @@ INICIOPROG
 		[Integer,Integer,String]:[b,as,c]
 		Integer e
 	ENDVAR
-	WHILE d IN [ a+3,a+65,as,a*5,(3+5)*c --2,a- 5] DO
+	WHILE d IN [ a+3,a+65,as,a*5,(3+5)*c --2,a- 5, Longitud([a+5])] DO
 		asd:=5
 	ENDWHILE
 	a:=2+3+5
@@ -17,6 +17,15 @@ INICIOPROG
 	k:=l
 	d:=b
 	as:=c
+	WRITE 5
+	a+c
+	a++c
+	IF Longitud([a+2*5,4,7, a+b]) >8 THEN
+		a+4
+	ENDIF 
+	WHILE Longitud([a+b,b*4,5]) > Longitud([a+b,b*4,Longitud([3,5])]) DO
+		a:=3
+	ENDWHILE
 	e:=5
 	c:=a++b++c++"324"++a
 	-/a=5-/

@@ -5,6 +5,7 @@ void yyerror(const char *);
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include "System.h"
 using namespace std;
 extern FILE *yyin;
 extern int lineCounter;
@@ -82,11 +83,12 @@ inicio: INICIO_PROG declaracion lista_sentencia FIN_PROG END_OF_FILE	{PRINT("Ini
 lista_sentencia : sentencia 											{ PRINT("Sentencia"); };
                 | lista_sentencia sentencia 							{ PRINT("Lista de Sentencias"); };
 
-sentencia : iteracion 													{PRINT("Loop");};
-          | decision 													{PRINT("Condicion");};
-          | asignacion 													{PRINT("Igualacion");};
-          | impresion 													{PRINT("Standard output");};
-          | ingreso 													{PRINT("Standard input");};
+sentencia : iteracion 													{PRINT("Sentencia loop");};
+          | decision 													{PRINT("Sentencia condicion");};
+          | asignacion 													{PRINT("Sentencia igualacion");};
+          | impresion 													{PRINT("Sentencia standard output");};
+          | ingreso 													{PRINT("Sentencia standard input");};
+          | exp															{PRINT("Sentencia exp");};
 
 
 iteracion : WHILE cond DO 												{PRINT("While");} 
@@ -117,6 +119,14 @@ exp : exp MAS termino 													{PRINT("Expresion suma termino");};
     | exp MENOS termino 												{PRINT("Expresion menos termino");};
     | termino 															{PRINT("Expresion termino");};
 	| concatenacion 													{PRINT("Expresion concatenacion");};
+	| funcion_Longitud
+
+funcion_Longitud: FUNCION_LONG PARENT_ABRE CORCHETE_ABRE
+					 valores_func_long 
+			 	CORCHETE_CIERRA PARENT_CIERRA							{PRINT("Funcion longitud");};
+
+valores_func_long: exp													{PRINT("Funcion longitud valor final");};			
+				|valores_func_long COMA exp								{PRINT("Funcion longitud valor sub i");};
 
 termino: termino MUL factor 											{PRINT("Termino por factor");};
        | termino DIV  factor 											{PRINT("Termino div factor");};
@@ -128,7 +138,7 @@ factor : IID 															{PRINT("Identificador");};
 
 asignacion :  IID ASIGNACION exp 										{PRINT("Asignacion");};
 
-impresion : WRITE IID 													{PRINT("Standard output Identificador");};
+impresion : WRITE exp 													{PRINT("Standard output Identificador");};
           | WRITE cadena 												{PRINT("Standard output constante");};
 		
 
@@ -187,16 +197,16 @@ IID : ID 																{PRINT("Id"); TS_ADD_ID(yytext,lineCounter);};
 
 int main(int argc,char **argv)
 {
-	
+	cout<<APP_ABOUT<<endl;	
 	if(argc<2)
 	{
-		PRINT("Ingrese el archivo a compilar");
+		cout<<"Ingrese el archivo a compilar."<<endl;
 		return -1;
 	}
 	yyin=fopen(argv[1],"r");
 	if(yyin==NULL)
 	{
-		PRINT("Error abriendo archivo "<<argv[1]);
+		cout<<"Error abriendo archivo: "<<argv[1]<<endl;
 		return -1;
 	}
 	

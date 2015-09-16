@@ -1,6 +1,10 @@
+Version 1.5
+	Implementa Pendiente[1.1-4]
+	Una sentencia tambien es una expresion sino , no puedo hacer WRITE a+2, o a+5 
 Version 1.4
 	BUG 1.3.-1 fixed
-	Implementa Pendiente[1.1-5] 
+	Implementa Pendiente[1.1-5]
+	Implementa Pendiente[1.1-6] 
 Version 1.3
 	Implementa Pendiente[1.1.-2]
 	BUG 1.3-1 La primer linea de declaracion de variables despues de una linea de declaracion especial no la toma
@@ -12,9 +16,9 @@ Version 1.1
 	*Pendiente[1.1-1]: falta resolver el fin de archivo y mostrar compilacion exitosa
 	*Pendiente[1.1-2]: falta concatenacion de strings,perteneciente a temas comunes	
 	*Pendiente[1.1-3]: falta declaracion de variable especial con formato [tipo,tipo]:[id,id],perteneciente a temas comunes
-	Pendiente[1.1-4]: falta funcion especial long, pertenecientes a temas especiales
-	Pendiente[1.1-5]: falta ciclo especial while in, pertenecientes a temas especiales
-	Pendiente[1.1-:6] falta tabla de simbolos
+	*Pendiente[1.1-4]: falta funcion especial long, pertenecientes a temas especiales
+	*Pendiente[1.1-5]: falta ciclo especial while in, pertenecientes a temas especiales
+	*Pendiente[1.1-6]: falta tabla de simbolos
 	En esta version aun no se debe implementar la generacion de codigo intermedio.
 		
 	
